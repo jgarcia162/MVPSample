@@ -1,6 +1,7 @@
 package com.example.android.mvpsample.network;
 
 import com.example.android.mvpsample.model.Joke;
+import com.example.android.mvpsample.model.JokesResponse;
 
 import java.util.List;
 
@@ -13,5 +14,5 @@ public interface JokesApi {
     Call<Joke> getRandomJoke();
 
     @GET("/search")
-    Call<List<Joke>> getJokes();
+    Call<JokesResponse> getJokes();
 }

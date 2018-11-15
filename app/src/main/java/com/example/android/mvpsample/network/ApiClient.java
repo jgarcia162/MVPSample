@@ -1,8 +1,7 @@
 package com.example.android.mvpsample.network;
 
 import com.example.android.mvpsample.model.Joke;
-
-import java.util.List;
+import com.example.android.mvpsample.model.JokesResponse;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -13,8 +12,9 @@ public class ApiClient {
     private String jokesBaseUrl;
     private JokesApi jokesApi;
 
-    ApiClient(){
+    public ApiClient(String jokesBaseUrl){
         super();
+        this.jokesBaseUrl = jokesBaseUrl;
         initApi();
     }
 
@@ -37,5 +37,5 @@ public class ApiClient {
         return jokesApi.getRandomJoke();
     }
 
-    public Call<List<Joke>> getJokes(){ return jokesApi.getJokes(); }
+    public Call<JokesResponse> getJokes(){ return jokesApi.getJokes(); }
 }
