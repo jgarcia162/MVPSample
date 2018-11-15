@@ -1,0 +1,27 @@
+ext.versions = [
+        'kotlin'        : '1.2.70',
+        'retrofit'      : '2.4.0',
+        'supportLibrary': '28.0.0-alpha3',
+]
+
+ext.deps = [
+        'android': [
+                'support': [
+                        'appCompatv7'     : "com.android.support:appcompat-v7:${versions.supportLibrary}",
+                        'constraintLayout': "com.android.support.constraint:constraint-layout:1.1.3",
+                        'design'          : "com.android.support:design:${versions.supportLibrary}",
+                        'recyclerView'    : "com.android.support:recyclerview-v7:${versions.supportLibrary}"
+                ],
+                'square' : [
+                        'retrofit2': [
+                                'core'         : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+                                'gsonConverter': "com.squareup.retrofit2:converter-gson:${versions.retrofit}",
+                        ]
+                ]
+        ],
+        'testing'   : [
+                'junit'     : "junit:junit:4.12",
+                'espresso'  : "com.android.support.test.espresso:espresso-core:3.0.2",
+                'runner'    : "com.android.support.test:runner:1.0.2"
+        ]
+]
