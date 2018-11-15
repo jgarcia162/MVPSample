@@ -1,7 +1,7 @@
 package com.example.android.mvpsample.network;
 
-import com.example.android.mvpsample.model.Joke;
-import com.example.android.mvpsample.model.JokesResponse;
+import com.example.android.mvpsample.model.Person;
+import com.example.android.mvpsample.model.PeopleResponse;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -9,33 +9,32 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
-    private String jokesBaseUrl;
-    private JokesApi jokesApi;
+    private String peopleBaseUrl;
+    private PeopleApi peopleApi;
 
-    public ApiClient(String jokesBaseUrl){
+    public ApiClient(String peopleBaseUrl){
         super();
-        this.jokesBaseUrl = jokesBaseUrl;
-        initApi();
+        this.peopleBaseUrl = peopleBaseUrl;
+        initApis();
     }
 
-    private void initApi(){
-        jokesApi = (JokesApi) createApi(jokesBaseUrl);
+    private void initApis(){
+        peopleApi = createRetrofit(peopleBaseUrl).create(PeopleApi.class);
     }
 
-    private Object createApi(String baseUrl){
+    private Retrofit createRetrofit (String baseUrl){
         OkHttpClient.Builder builder  = new OkHttpClient.Builder();
         OkHttpClient client = builder.build();
-        Retrofit retrofit = new Retrofit.Builder()
+        return new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
-        return retrofit.create(Object.class);
     }
 
-    public Call<Joke> getRandomJoke(){
-        return jokesApi.getRandomJoke();
+    public Call<Person> getRandomPerson(){
+        return peopleApi.getRandomPerson();
     }
 
-    public Call<JokesResponse> getJokes(){ return jokesApi.getJokes(); }
+    public Call<PeopleResponse> getPeople(){ return peopleApi.getPeople(); }
 }

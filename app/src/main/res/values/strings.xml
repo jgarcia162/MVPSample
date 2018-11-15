@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">MVPSample</string>
-    <string name="joke">Joke</string>
+    <string name="person">Joke</string>
     <string name="refresh">Refresh</string>
-    <string name="random_joke">Random Joke</string>
+    <string name="random_person">Random Person</string>
 </resources>

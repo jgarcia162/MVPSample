@@ -12,7 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.android.mvpsample.R;
-import com.example.android.mvpsample.model.Joke;
+import com.example.android.mvpsample.model.Person;
 import com.example.android.mvpsample.presentation.MainPresentation;
 import com.example.android.mvpsample.presenter.MainPresenter;
 
@@ -25,9 +25,9 @@ public class MainActivity extends AppCompatActivity implements MainPresentation 
     private MainPresenter presenter;
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
-    private JokesAdapter adapter;
-    private Button randomJokeButton, refreshButton;
-    private List<Joke> jokes = new ArrayList<>();
+    private PersonAdapter adapter;
+    private Button randomPersonButton, refreshButton;
+    private List<Person> people = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +35,15 @@ public class MainActivity extends AppCompatActivity implements MainPresentation 
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.recyclerView);
         progressBar = findViewById(R.id.progress_bar);
-        randomJokeButton = findViewById(R.id.random_joke_button);
+        randomPersonButton = findViewById(R.id.random_person_button);
         refreshButton = findViewById(R.id.refresh_button);
-        initRecyclerView(jokes);
+        presenter = new MainPresenter();
+        initRecyclerView(people);
         setClickListeners();
     }
 
     private void setClickListeners() {
-        randomJokeButton.setOnClickListener(new View.OnClickListener() {
+        randomPersonButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 presenter.getRandomJoke();
@@ -61,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements MainPresentation 
     protected void onStart() {
         super.onStart();
 
-        presenter = new MainPresenter();
         presenter.attach(this);
         presenter.getJokes();
     }
@@ -73,8 +73,8 @@ public class MainActivity extends AppCompatActivity implements MainPresentation 
         presenter.detach();
     }
 
-    public void initRecyclerView(List<Joke> jokes) {
-        adapter = new JokesAdapter(jokes);
+    public void initRecyclerView(List<Person> people) {
+        adapter = new PersonAdapter(people);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, VERTICAL, false));
     }
@@ -102,15 +102,15 @@ public class MainActivity extends AppCompatActivity implements MainPresentation 
     }
 
     @Override
-    public void showJokes(List<Joke> jokes) {
-        this.jokes = jokes;
-        adapter.setData(jokes);
+    public void showPeople(List<Person> people) {
+        this.people = people;
+        adapter.setData(people);
     }
 
     @Override
-    public void showRandomJoke(String joke) {
+    public void showRandomPerson(String joke) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle(R.string.random_joke)
+        alertDialogBuilder.setTitle(R.string.random_person)
                 .setMessage(joke)
                 .setPositiveButton("Dismiss", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {

@@ -1,7 +1,9 @@
 package com.example.android.mvpsample.presenter;
 
-import com.example.android.mvpsample.model.Joke;
-import com.example.android.mvpsample.model.JokesResponse;
+import android.util.Log;
+
+import com.example.android.mvpsample.model.Person;
+import com.example.android.mvpsample.model.PeopleResponse;
 import com.example.android.mvpsample.network.ApiClient;
 import com.example.android.mvpsample.presentation.MainPresentation;
 
@@ -13,48 +15,55 @@ public class MainPresenter {
     private MainPresentation presentation;
     private ApiClient apiClient;
 
-    public void attach(MainPresentation presentation){
+    public void attach(MainPresentation presentation) {
         this.presentation = presentation;
 
-        apiClient = new ApiClient("https://icanhazdadjoke.com/");
+        apiClient = new ApiClient("https://swapi.co/");
     }
 
-    public void detach(){
+    public void detach() {
         this.presentation = null;
     }
 
-    public void getJokes(){
+    public void getJokes() {
         presentation.showLoading();
-        apiClient.getJokes().enqueue(new Callback<JokesResponse>() {
+        Call<PeopleResponse> call = apiClient.getPeople();
+        Log.d("REQUEST: ", "getRandomPerson: " + call.request());
+
+        call.enqueue(new Callback<PeopleResponse>() {
             @Override
-            public void onResponse(Call<JokesResponse> call, Response<JokesResponse> response) {
+            public void onResponse(Call<PeopleResponse> call, Response<PeopleResponse> response) {
                 presentation.hideLoading();
-                if (response.body() != null) {
-                    presentation.showJokes(response.body().getResults());
+                if(response.body() != null){
+                    presentation.showPeople(response.body().getResults());
                 }
             }
 
             @Override
-            public void onFailure(Call<JokesResponse> call, Throwable t) {
-                presentation.hideLoading();
+            public void onFailure(Call<PeopleResponse> call, Throwable t) {
                 presentation.showFailedToast();
+                presentation.hideLoading();
+                Log.d("FAILED RESPONSE: ", "onFailure: " + t.getMessage());
+                Log.d("FAILED RESPONSE: ", "onFailure: " + call.request());
             }
         });
     }
 
-    public void getRandomJoke(){
+    public void getRandomJoke() {
         presentation.showLoading();
-        apiClient.getRandomJoke().enqueue(new Callback<Joke>() {
+        Call<Person> call = apiClient.getRandomPerson();
+        Log.d("REQUEST: ", "getRandomPerson: " + call.request());
+        call.enqueue(new Callback<Person>() {
             @Override
-            public void onResponse(Call<Joke> call, Response<Joke> response) {
+            public void onResponse(Call<Person> call, Response<Person> response) {
                 presentation.hideLoading();
                 if (response.body() != null) {
-                    presentation.showRandomJoke(response.body().getJoke());
+                    presentation.showRandomPerson(response.body().getName());
                 }
             }
 
             @Override
-            public void onFailure(Call<Joke> call, Throwable t) {
+            public void onFailure(Call<Person> call, Throwable t) {
                 presentation.hideLoading();
                 presentation.showFailedToast();
             }

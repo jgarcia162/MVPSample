@@ -1,6 +1,6 @@
 package com.example.android.mvpsample.presentation;
 
-import com.example.android.mvpsample.model.Joke;
+import com.example.android.mvpsample.model.Person;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public interface MainPresentation {
 
     void showFailedToast();
 
-    void showJokes(List<Joke> jokes);
+    void showPeople(List<Person> people);
 
-    void showRandomJoke(String joke);
+    void showRandomPerson(String personName);
 }
