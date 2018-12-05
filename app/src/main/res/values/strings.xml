@@ -3,4 +3,5 @@
     <string name="person">Person</string>
     <string name="refresh">Refresh</string>
     <string name="random_person">Random Person</string>
+    <string name="person_image_description">Photo of person</string>
 </resources>

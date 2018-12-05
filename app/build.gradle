@@ -29,4 +29,6 @@ dependencies {
     androidTestImplementation deps.testing.espresso
     implementation deps.android.square.retrofit2.core
     implementation deps.android.square.retrofit2.gsonConverter
+    implementation deps.android.square.picasso.core
+    implementation deps.android.square.picasso.exifinterface
 }

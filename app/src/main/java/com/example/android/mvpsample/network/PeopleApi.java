@@ -9,9 +9,6 @@ import retrofit2.http.Path;
 
 public interface PeopleApi {
 
-    @GET("api/people/{randomIndex}")
-    Call<Person> getRandomPerson(@Path("randomIndex") int randomIndex);
-
     @GET("api/people")
     Call<PeopleResponse> getPeople();
 }

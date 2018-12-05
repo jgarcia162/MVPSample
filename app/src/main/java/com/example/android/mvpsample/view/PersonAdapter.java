@@ -25,7 +25,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull PersonViewHolder viewHolder, int position) {
-        viewHolder.bindJoke(peopleList.get(position));
+        viewHolder.bind(peopleList.get(position));
     }
 
     @Override

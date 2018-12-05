@@ -1,6 +1,5 @@
 package com.example.android.mvpsample.network;
 
-import com.example.android.mvpsample.model.Person;
 import com.example.android.mvpsample.model.PeopleResponse;
 
 import okhttp3.OkHttpClient;
@@ -12,18 +11,18 @@ public class ApiClient {
     private String peopleBaseUrl;
     private PeopleApi peopleApi;
 
-    public ApiClient(String peopleBaseUrl){
+    public ApiClient(String peopleBaseUrl) {
         super();
         this.peopleBaseUrl = peopleBaseUrl;
         initApis();
     }
 
-    private void initApis(){
+    private void initApis() {
         peopleApi = createRetrofit(peopleBaseUrl).create(PeopleApi.class);
     }
 
-    private Retrofit createRetrofit (String baseUrl){
-        OkHttpClient.Builder builder  = new OkHttpClient.Builder();
+    private Retrofit createRetrofit(String baseUrl) {
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
         OkHttpClient client = builder.build();
         return new Retrofit.Builder()
                 .baseUrl(baseUrl)
@@ -32,9 +31,7 @@ public class ApiClient {
                 .build();
     }
 
-    public Call<Person> getRandomPerson(int randomIndex){
-        return peopleApi.getRandomPerson(randomIndex);
+    public Call<PeopleResponse> getPeople() {
+        return peopleApi.getPeople();
     }
-
-    public Call<PeopleResponse> getPeople(){ return peopleApi.getPeople(); }
 }
