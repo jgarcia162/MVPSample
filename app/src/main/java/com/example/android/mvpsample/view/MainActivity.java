@@ -46,14 +46,14 @@ public class MainActivity extends AppCompatActivity implements MainPresentation 
         randomPersonButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                presenter.getRandomJoke();
+                presenter.getRandomPerson();
             }
         });
 
         refreshButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                presenter.getJokes();
+                presenter.getPeople();
             }
         });
     }
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements MainPresentation 
         super.onStart();
 
         presenter.attach(this);
-        presenter.getJokes();
+        presenter.getPeople();
     }
 
     @Override
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements MainPresentation 
 
     @Override
     public void refresh() {
-        presenter.getJokes();
+        presenter.getPeople();
     }
 
     @Override

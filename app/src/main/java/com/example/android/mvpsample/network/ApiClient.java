@@ -32,8 +32,8 @@ public class ApiClient {
                 .build();
     }
 
-    public Call<Person> getRandomPerson(){
-        return peopleApi.getRandomPerson();
+    public Call<Person> getRandomPerson(int randomIndex){
+        return peopleApi.getRandomPerson(randomIndex);
     }
 
     public Call<PeopleResponse> getPeople(){ return peopleApi.getPeople(); }
