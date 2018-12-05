@@ -3,6 +3,7 @@ package com.example.android.mvpsample.view;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.design.button.MaterialButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements MainPresentation 
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
     private PersonAdapter adapter;
-    private Button randomPersonButton, refreshButton;
+    private MaterialButton randomPersonButton, refreshButton;
     private List<Person> people = new ArrayList<>();
 
     @Override
