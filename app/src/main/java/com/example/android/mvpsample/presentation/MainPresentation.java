@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface MainPresentation {
     void refresh();
+
     void showLoading();
     void hideLoading();
 

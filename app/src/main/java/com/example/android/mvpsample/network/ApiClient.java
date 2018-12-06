@@ -1,6 +1,5 @@
 package com.example.android.mvpsample.network;
 
-import com.example.android.mvpsample.model.Person;
 import com.example.android.mvpsample.model.PeopleResponse;
 
 import okhttp3.OkHttpClient;
@@ -9,17 +8,17 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
-    private String peopleBaseUrl;
     private PeopleApi peopleApi;
+    private final String  STAR_WARS_BASE_URL = "https://swapi.co/";
 
-    public ApiClient(String peopleBaseUrl){
+    public ApiClient(){
         super();
-        this.peopleBaseUrl = peopleBaseUrl;
         initApis();
     }
 
     private void initApis(){
-        peopleApi = createRetrofit(peopleBaseUrl).create(PeopleApi.class);
+        peopleApi = createRetrofit(STAR_WARS_BASE_URL).create(PeopleApi.class);
+
     }
 
     private Retrofit createRetrofit (String baseUrl){

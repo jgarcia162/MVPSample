@@ -1,9 +1,7 @@
 package com.example.android.mvpsample.presenter;
 
-import android.util.Log;
-
-import com.example.android.mvpsample.model.Person;
 import com.example.android.mvpsample.model.PeopleResponse;
+import com.example.android.mvpsample.model.Person;
 import com.example.android.mvpsample.network.ApiClient;
 import com.example.android.mvpsample.presentation.MainPresentation;
 
@@ -23,7 +21,7 @@ public class MainPresenter {
     public void attach(MainPresentation presentation) {
         this.presentation = presentation;
 
-        apiClient = new ApiClient("https://swapi.co/");
+        apiClient = new ApiClient();
     }
 
     public void detach() {
