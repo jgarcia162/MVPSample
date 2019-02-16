@@ -34,20 +34,4 @@ public class PersonDiffUtilCallback extends DiffUtil.Callback {
     public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
         return newList.get(newItemPosition).compareTo(oldList.get(oldItemPosition)) == 1;
     }
-
-//    @Nullable
-//    @Override
-//    public Object getChangePayload(int oldItemPosition, int newItemPosition) {
-//        Person newPerson = newList.get(newItemPosition);
-//        Person oldPerson = oldList.get(oldItemPosition);
-//
-//        Bundle diff = new Bundle();
-//        if(!newPerson.getName().equals(oldPerson.getName())){
-//            diff.putString("name", newPerson.getName());
-//        }
-//        if (diff.size()==0){
-//            return null;
-//        }
-//        return diff;
-//    }
 }
