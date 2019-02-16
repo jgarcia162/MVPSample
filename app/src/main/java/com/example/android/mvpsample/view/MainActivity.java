@@ -7,6 +7,8 @@ import android.support.design.button.MaterialButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -110,13 +112,38 @@ public class MainActivity extends AppCompatActivity implements MainPresentation 
 
     @Override
     public void showRandomPerson(String name) {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle(R.string.random_person)
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.random_person)
                 .setMessage(name)
                 .setPositiveButton(R.string.dismiss, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        }).show();
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_sort_a_z:
+                presenter.sortPeopleByNameAscending();
+                break;
+            case R.id.menu_sort_z_a:
+                presenter.sortPeopleByNameDescending();
+                break;
+            case R.id.menu_shuffle:
+                presenter.shufflePeople();
+                break;
+            case R.id.menu_undo:
+                presenter.getPeople();
+                break;
+        }
+        return true;
     }
 }

@@ -6,4 +6,8 @@
     <string name="person_image_description">Photo of person</string>
     <string name="failed">Failed try again</string>
     <string name="dismiss">Dismiss</string>
+    <string name="title_sort_a_z">Sort A - Z</string>
+    <string name="title_sort_z_a">Sort Z - A</string>
+    <string name="title_shuffle">Shuffle</string>
+    <string name="title_undo">Undo</string>
 </resources>

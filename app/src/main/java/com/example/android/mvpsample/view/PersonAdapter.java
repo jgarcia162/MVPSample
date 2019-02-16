@@ -1,12 +1,14 @@
 package com.example.android.mvpsample.view;
 
 import android.support.annotation.NonNull;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.example.android.mvpsample.R;
 import com.example.android.mvpsample.model.Person;
+import com.example.android.mvpsample.util.PersonDiffUtilCallback;
 
 import java.util.List;
 
@@ -34,8 +36,11 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> {
     }
 
     void setData(List<Person> newPeople) {
-        peopleList = newPeople;
-        //should use DiffUtils class for better performance, this is fine for this simple example. See "optimized" branch for DiffUtils implementation
-        notifyDataSetChanged();
+        PersonDiffUtilCallback diffCallback = new PersonDiffUtilCallback(peopleList, newPeople);
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
+
+        peopleList.clear();
+        peopleList.addAll(newPeople);
+        diffResult.dispatchUpdatesTo(this);
     }
 }

@@ -8,7 +8,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
-    private final String  STAR_WARS_BASE_URL = "https://swapi.co/";
+    private final String STAR_WARS_BASE_URL = "https://swapi.co/";
     private static ApiClient instance;
     private PeopleApi peopleApi;
 
@@ -26,12 +26,12 @@ public class ApiClient {
         return instance;
     }
 
-    private void initApis(){
+    private void initApis() {
         peopleApi = createRetrofit(STAR_WARS_BASE_URL).create(PeopleApi.class);
     }
 
-    private Retrofit createRetrofit (String baseUrl){
-        OkHttpClient.Builder builder  = new OkHttpClient.Builder();
+    private Retrofit createRetrofit(String baseUrl) {
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
         OkHttpClient client = builder.build();
         return new Retrofit.Builder()
                 .baseUrl(baseUrl)
@@ -40,5 +40,7 @@ public class ApiClient {
                 .build();
     }
 
-    public Call<PeopleResponse> getPeople(){ return peopleApi.getPeople(); }
+    public Call<PeopleResponse> getPeople() {
+        return peopleApi.getPeople();
+    }
 }

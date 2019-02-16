@@ -4,6 +4,7 @@ import com.example.android.mvpsample.model.PeopleResponse;
 import com.example.android.mvpsample.model.Person;
 import com.example.android.mvpsample.network.ApiClient;
 import com.example.android.mvpsample.presentation.MainPresentation;
+import com.example.android.mvpsample.util.PersonSorter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,7 @@ public class MainPresenter {
             @Override
             public void onResponse(Call<PeopleResponse> call, Response<PeopleResponse> response) {
                 presentation.hideLoading();
-                if(response.body() != null){
+                if (response.body() != null) {
                     people = response.body().getResults();
                     presentation.showPeople(people);
                 }
@@ -57,5 +58,17 @@ public class MainPresenter {
 
     private int getRandomIndex() {
         return new Random().nextInt(people.size() - 1);
+    }
+
+    public void sortPeopleByNameAscending() {
+        presentation.showPeople(PersonSorter.Companion.sortByNameAscending(people));
+    }
+
+    public void sortPeopleByNameDescending() {
+        presentation.showPeople(PersonSorter.Companion.sortByNameDescending(people));
+    }
+
+    public void shufflePeople() {
+        presentation.showPeople(PersonSorter.Companion.shufflePeople(people));
     }
 }

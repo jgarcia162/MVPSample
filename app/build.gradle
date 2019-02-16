@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 28
@@ -31,4 +33,8 @@ dependencies {
     implementation deps.android.square.retrofit2.gsonConverter
     implementation deps.android.square.picasso.core
     implementation deps.android.square.picasso.exifinterface
+    implementation deps.kotlin
+}
+repositories {
+    mavenCentral()
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_sort_a_z"
+        android:title="@string/title_sort_a_z" />
+    <item
+        android:id="@+id/menu_sort_z_a"
+        android:title="@string/title_sort_z_a" />
+    <item
+        android:id="@+id/menu_shuffle"
+        android:title="@string/title_shuffle" />
+    <item
+        android:id="@+id/menu_undo"
+        android:title="@string/title_undo" />
+</menu>

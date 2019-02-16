@@ -1,8 +1,10 @@
 package com.example.android.mvpsample.model;
 
+import android.support.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
-public class Person {
+public class Person implements Comparable<Person> {
     private String name;
     private String height;
     private String mass;
@@ -40,5 +42,10 @@ public class Person {
 
     public String getGender() {
         return gender;
+    }
+
+    @Override
+    public int compareTo(@NonNull Person o) {
+        return this.getName().equals(o.getName()) ? 1 : 0;
     }
 }
