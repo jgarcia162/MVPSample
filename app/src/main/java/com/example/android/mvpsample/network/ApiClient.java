@@ -8,17 +8,26 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
-    private PeopleApi peopleApi;
     private final String  STAR_WARS_BASE_URL = "https://swapi.co/";
+    private static ApiClient instance;
+    private PeopleApi peopleApi;
 
-    public ApiClient(){
-        super();
+    private ApiClient() {
         initApis();
+    }
+
+    public static ApiClient getInstance() {
+        if (instance != null) {
+            return instance;
+        }
+
+        instance = new ApiClient();
+
+        return instance;
     }
 
     private void initApis(){
         peopleApi = createRetrofit(STAR_WARS_BASE_URL).create(PeopleApi.class);
-
     }
 
     private Retrofit createRetrofit (String baseUrl){

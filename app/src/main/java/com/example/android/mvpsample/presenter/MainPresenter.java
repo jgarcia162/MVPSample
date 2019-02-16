@@ -18,10 +18,12 @@ public class MainPresenter {
     private ApiClient apiClient;
     private List<Person> people = new ArrayList<>();
 
+    public MainPresenter(ApiClient apiClient) {
+        this.apiClient = apiClient;
+    }
+
     public void attach(MainPresentation presentation) {
         this.presentation = presentation;
-
-        apiClient = new ApiClient();
     }
 
     public void detach() {
@@ -31,9 +33,7 @@ public class MainPresenter {
     public void getPeople() {
         presentation.showLoading();
 
-        Call<PeopleResponse> call = apiClient.getPeople();
-
-        call.enqueue(new Callback<PeopleResponse>() {
+        apiClient.getPeople().enqueue(new Callback<PeopleResponse>() {
             @Override
             public void onResponse(Call<PeopleResponse> call, Response<PeopleResponse> response) {
                 presentation.hideLoading();
@@ -45,16 +45,17 @@ public class MainPresenter {
 
             @Override
             public void onFailure(Call<PeopleResponse> call, Throwable t) {
-                presentation.showFailedToast();
                 presentation.hideLoading();
+                presentation.showFailedToast();
             }
         });
     }
 
     public void getRandomPerson() {
-        final int randomIndex = getRandomIndex();
-        presentation.showRandomPerson(people.get(randomIndex).getName());
+        presentation.showRandomPerson(people.get(getRandomIndex()).getName());
     }
 
-    private int getRandomIndex() { return new Random().nextInt(people.size() - 1 ) + 1; }
+    private int getRandomIndex() {
+        return new Random().nextInt(people.size() - 1);
+    }
 }

@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.android.mvpsample.R;
 import com.example.android.mvpsample.model.Person;
+import com.example.android.mvpsample.network.ApiClient;
 import com.example.android.mvpsample.presentation.MainPresentation;
 import com.example.android.mvpsample.presenter.MainPresenter;
 
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements MainPresentation 
         progressBar = findViewById(R.id.progress_bar);
         randomPersonButton = findViewById(R.id.random_person_button);
         refreshButton = findViewById(R.id.refresh_button);
-        presenter = new MainPresenter();
+        presenter = new MainPresenter(ApiClient.getInstance());
         initRecyclerView(people);
         setClickListeners();
     }
@@ -98,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements MainPresentation 
 
     @Override
     public void showFailedToast() {
-        Toast.makeText(this, "Failed try again", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.failed, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -108,11 +109,11 @@ public class MainActivity extends AppCompatActivity implements MainPresentation 
     }
 
     @Override
-    public void showRandomPerson(String joke) {
+    public void showRandomPerson(String name) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle(R.string.random_person)
-                .setMessage(joke)
-                .setPositiveButton("Dismiss", new DialogInterface.OnClickListener() {
+                .setMessage(name)
+                .setPositiveButton(R.string.dismiss, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
