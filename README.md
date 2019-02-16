@@ -9,7 +9,11 @@ Image loading done with [Picasso](http://square.github.io/picasso/)
 
 `master` and `solution` branches include a bare-bones implementation
 
+![Basic](https://media.giphy.com/media/RkLs7GogtyfUl3ABil/giphy.gif)
+
 `optimized` branch includes:
  * Feature to allow sorting and shuffling of the list
  * optimization on `PersonAdapter.java` that implements [DiffUtil](https://developer.android.com/reference/android/support/v7/util/DiffUtil)
  * `PersonSorter.kt` helper class
+ 
+![Sorting](https://media.giphy.com/media/8ZbMnGICgaBK07e77E/giphy.gif)
