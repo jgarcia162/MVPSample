@@ -8,21 +8,30 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
-    private String peopleBaseUrl;
+    private final String  STAR_WARS_BASE_URL = "https://swapi.co/";
+    private static ApiClient instance;
     private PeopleApi peopleApi;
 
-    public ApiClient(String peopleBaseUrl) {
-        super();
-        this.peopleBaseUrl = peopleBaseUrl;
+    private ApiClient() {
         initApis();
     }
 
-    private void initApis() {
-        peopleApi = createRetrofit(peopleBaseUrl).create(PeopleApi.class);
+    public static ApiClient getInstance() {
+        if (instance != null) {
+            return instance;
+        }
+
+        instance = new ApiClient();
+
+        return instance;
     }
 
-    private Retrofit createRetrofit(String baseUrl) {
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+    private void initApis(){
+        peopleApi = createRetrofit(STAR_WARS_BASE_URL).create(PeopleApi.class);
+    }
+
+    private Retrofit createRetrofit (String baseUrl){
+        OkHttpClient.Builder builder  = new OkHttpClient.Builder();
         OkHttpClient client = builder.build();
         return new Retrofit.Builder()
                 .baseUrl(baseUrl)
@@ -31,7 +40,5 @@ public class ApiClient {
                 .build();
     }
 
-    public Call<PeopleResponse> getPeople() {
-        return peopleApi.getPeople();
-    }
+    public Call<PeopleResponse> getPeople(){ return peopleApi.getPeople(); }
 }

@@ -13,7 +13,7 @@ import java.util.List;
 public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> {
     private List<Person> peopleList;
 
-    public PersonAdapter(List<Person> people){
+    PersonAdapter(List<Person> people) {
         peopleList = people;
     }
 
@@ -33,8 +33,9 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> {
         return peopleList.size();
     }
 
-    public void setData(List<Person> newPeople){
+    void setData(List<Person> newPeople) {
         peopleList = newPeople;
+        //should use DiffUtils class for better performance, this is fine for this simple example. See "optimized" branch for DiffUtils implementation
         notifyDataSetChanged();
     }
 }
