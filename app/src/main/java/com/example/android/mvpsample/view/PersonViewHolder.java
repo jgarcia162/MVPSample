@@ -14,7 +14,6 @@ import com.squareup.picasso.Picasso;
 class PersonViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private TextView nameTextView;
     private ImageView photoImageView;
-    private Person person;
 
     PersonViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -25,13 +24,12 @@ class PersonViewHolder extends RecyclerView.ViewHolder implements View.OnClickLi
     }
 
     void bind(Person person){
-        this.person = person;
         nameTextView.setText(person.getName());
         Picasso.get().load(R.drawable.vader).into(photoImageView);
     }
 
     @Override
     public void onClick(View v) {
-        Toast.makeText(v.getContext(), person.getName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(v.getContext(), nameTextView.getText().toString(), Toast.LENGTH_SHORT).show();
     }
 }
